@@ -15,5 +15,8 @@ public class ModCompat {
         if (Loader.isModLoaded("serverutilities")) {
             LOGGER.info("ServerUtilities detected - loading support");
         }
+        if (Loader.isModLoaded("hfr")) {
+            LOGGER.info("XENOFACTIONS detected - loading support");
+        }
     }
 }
