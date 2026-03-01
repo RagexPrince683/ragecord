@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.player.AchievementEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.nio.file.Paths;
 
 @Mod(modid = "nilcord", version = Tags.VERSION, name = "Nilcord",  acceptedMinecraftVersions = "[1.7.10]", acceptableRemoteVersions = "*")
@@ -44,6 +45,7 @@ public class NilcordPremain {
     // Server starting / stopping events
     @Mod.EventHandler
     public void onServerStarted(FMLServerStartedEvent event) {
+        ChatFilter.init(new File("config"));
         NilcordPremain.server = (DedicatedServer) FMLServerHandler.instance().getServer();
         listener.serverStart();
     }
