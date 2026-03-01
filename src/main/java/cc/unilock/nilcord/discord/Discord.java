@@ -20,6 +20,8 @@ import net.minecraftforge.common.ForgeHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.text.Normalizer;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -132,6 +134,8 @@ public class Discord extends ListenerAdapter {
 
         sendMessageToDiscord(msg, player);
     }
+
+
 
     public void sendMessageToDiscord(String message) {
         this.sendMessageToDiscord(message, null);

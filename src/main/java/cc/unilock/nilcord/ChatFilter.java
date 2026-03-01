@@ -1,6 +1,7 @@
 package cc.unilock.nilcord;
 
 import java.io.*;
+import java.text.Normalizer;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -57,13 +58,39 @@ public class ChatFilter {
         }
     }
 
+    public static String normalize(String input) {
+
+        if (input == null) return "";
+
+        // Convert to lowercase
+        String text = input.toLowerCase(Locale.ROOT);
+
+        // Remove accents (BANNED FROM GITHUB FOR THIS POST)
+        text = Normalizer.normalize(text, Normalizer.Form.NFD);
+        text = text.replaceAll("\\p{M}", "");
+
+        // Remove non-alphanumeric except spaces
+        text = text.replaceAll("[^a-z0-9 ]", "");
+
+        // Collapse repeated letters (USER WAS REMOVED FOR THIS POST)
+        text = text.replaceAll("(.)\\1{2,}", "$1$1");
+
+        //NO MORE NON ENGLISH BULLSHIT
+        //text = text.replaceAll("[^a-z0-9 ]", "");
+        //oh wait it already did this lel
+
+        return text;
+    }
     public static boolean isBlocked(String message) {
+
+        String clean = normalize(message);
+
         for (Pattern pattern : BLOCKED_PATTERNS) {
-            if (pattern.matcher(message).find()) {
-                System.out.println("Blocked by regex: " + pattern.pattern());
+            if (pattern.matcher(clean).find()) {
                 return true;
             }
         }
+
         return false;
     }
 }
