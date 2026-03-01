@@ -126,9 +126,9 @@ public class Discord extends ListenerAdapter {
         }
 
         // 🚫 Block if matches regex
-        //if (ChatFilter.isBlocked(message)) {
-        //    return;
-        //}
+        if (ChatFilter.isBlocked(message)) {
+            return;
+        }
 
         sendMessageToDiscord(msg, player);
     }

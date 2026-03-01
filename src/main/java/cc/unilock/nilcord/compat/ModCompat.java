@@ -16,7 +16,7 @@ public class ModCompat {
             LOGGER.info("ServerUtilities detected - loading support");
         }
         if (Loader.isModLoaded("hfr")) {
-            LOGGER.info("XENOFACTIONS detected - loading support");
+            LOGGER.info("XENOFACTIONS detected - loading support, nvm lol just event priority lowest");
         }
     }
 }
