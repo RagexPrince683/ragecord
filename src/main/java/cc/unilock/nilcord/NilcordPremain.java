@@ -8,6 +8,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.server.FMLServerHandler;
@@ -71,8 +72,13 @@ public class NilcordPremain {
         }
     }
     public static final class MFEvents {
-        @SubscribeEvent
+        @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
         public void onServerChat(ServerChatEvent event) {
+
+            if (event.player.worldObj.isRemote) return;
+
+            if (event.message == null || event.message.isEmpty()) return;
+
             listener.playerChatMessage(event.player, event.message);
         }
         @SubscribeEvent
