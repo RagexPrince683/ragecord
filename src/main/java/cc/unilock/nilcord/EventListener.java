@@ -52,10 +52,7 @@ public class EventListener {
             : CONFIG.formatting.discord.chat_message.value().isEmpty())
             return;
 
-        // 🚫 Block if matches regex
-        if (ChatFilter.isBlocked(message)) {
-            return;
-        }
+
 
         NilcordPremain.discord.onPlayerChatMessage(player, message);
     }

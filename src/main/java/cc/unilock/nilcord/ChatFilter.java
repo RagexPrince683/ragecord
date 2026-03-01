@@ -60,6 +60,7 @@ public class ChatFilter {
     public static boolean isBlocked(String message) {
         for (Pattern pattern : BLOCKED_PATTERNS) {
             if (pattern.matcher(message).find()) {
+                System.out.println("Blocked by regex: " + pattern.pattern());
                 return true;
             }
         }

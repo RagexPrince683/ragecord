@@ -1,5 +1,6 @@
 package cc.unilock.nilcord.discord;
 
+import cc.unilock.nilcord.ChatFilter;
 import cc.unilock.nilcord.util.TextUtils;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -123,6 +124,11 @@ public class Discord extends ListenerAdapter {
         if (CONFIG.minecraft.enable_mentions.value()) {
             msg = parseMentions(msg);
         }
+
+        // 🚫 Block if matches regex
+        //if (ChatFilter.isBlocked(message)) {
+        //    return;
+        //}
 
         sendMessageToDiscord(msg, player);
     }
