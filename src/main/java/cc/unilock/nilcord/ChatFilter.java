@@ -71,26 +71,20 @@ public class ChatFilter {
     private static String regexify(String string) {
 
         StringBuilder neue = new StringBuilder("(?i)");
-        boolean first = true;
 
         for (char c : string.toCharArray()) {
 
-            if (!first)
-                neue.append("[ \\.\\-_@$!#:;&\\(\\)\\-¶,\\.\\?+×÷=%/*€£￦¥¿¡^\\[\\]<>~`§μ¬Г´·\\{\\}©|¤Ωθฯ]{0,3}");
-
-            first = false;
-
             switch (c) {
-                case 'a': neue.append("[aäáàâåǎ]"); break;
-                case 'c': neue.append("[cĉčćç]"); break;
-                case 'e': neue.append("[eëéèêě]"); break;
-                case 'i': neue.append("[iịǐíìîï]"); break;
-                case 'j': neue.append("[jĵǰ]"); break;
-                case 'm': neue.append("[mṃ]"); break;
-                case 'n': neue.append("[nňṇńņ]"); break;
-                case 'o': neue.append("[oöóòôǒọ]"); break;
-                case 's': neue.append("[sŝšṣśş]"); break;
-                case 'u': neue.append("[uüúùûůǔụ]"); break;
+                case 'a': neue.append("[a]"); break;
+                case 'c': neue.append("[c]"); break;
+                case 'e': neue.append("[e]"); break;
+                case 'i': neue.append("[i]"); break;
+                case 'j': neue.append("[j]"); break;
+                case 'm': neue.append("[m]"); break;
+                case 'n': neue.append("[n]"); break;
+                case 'o': neue.append("[o]"); break;
+                case 's': neue.append("[s]"); break;
+                case 'u': neue.append("[u]"); break;
                 default: neue.append(Pattern.quote(String.valueOf(c)));
             }
         }
