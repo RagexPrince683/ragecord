@@ -41,12 +41,12 @@ public class NilcordPremain {
         FMLCommonHandler.instance().bus().register(new FMLEvents());
         MinecraftForge.EVENT_BUS.register(new MFEvents());
 
-        ModCompat.init();
     }
 
     // Server starting / stopping events
     @Mod.EventHandler
     public void onServerStarted(FMLServerStartedEvent event) {
+        ModCompat.init();
         ChatFilter.init(new File("config"));
         NilcordPremain.server = (DedicatedServer) FMLServerHandler.instance().getServer();
         listener.serverStart();
@@ -80,6 +80,10 @@ public class NilcordPremain {
             if (event.message == null || event.message.isEmpty()) return;
 
             if (MuteBridge.isPlayerMuted(event.player.getUniqueID())) {
+                System.out.println(
+                    "Player: " + event.player.getCommandSenderName() +
+                        " muted? " + MuteBridge.isPlayerMuted(event.player.getUniqueID())
+                );
                 return;
             }
 
