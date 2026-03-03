@@ -22,9 +22,6 @@ public class MuteBridge {
             isMutedMethod =
                 muteManagerClass.getMethod("isMuted", UUID.class);
 
-            System.out.println("Xeno loaded: " + xenofactionsLoaded);
-            System.out.println("Method found: " + (isMutedMethod != null));
-
         } catch (Exception e) {
             xenofactionsLoaded = false;
         }
@@ -36,7 +33,6 @@ public class MuteBridge {
             return false;
 
         try {
-            System.out.println("Checking mute for UUID: " + uuid);
             return (boolean) isMutedMethod.invoke(null, uuid);
         } catch (Exception e) {
             return false;
