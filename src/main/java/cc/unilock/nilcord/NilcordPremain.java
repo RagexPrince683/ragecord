@@ -1,6 +1,7 @@
 package cc.unilock.nilcord;
 
 import cc.unilock.nilcord.compat.ModCompat;
+import cc.unilock.nilcord.compat.MuteBridge;
 import cc.unilock.nilcord.config.NilcordConfig;
 import cc.unilock.nilcord.discord.Discord;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -76,8 +77,11 @@ public class NilcordPremain {
         public void onServerChat(ServerChatEvent event) {
 
             if (event.player.worldObj.isRemote) return;
-
             if (event.message == null || event.message.isEmpty()) return;
+
+            if (MuteBridge.isPlayerMuted(event.player.getUniqueID())) {
+                return;
+            }
 
             listener.playerChatMessage(event.player, event.message);
         }
