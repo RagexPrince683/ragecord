@@ -1,5 +1,6 @@
 package cc.unilock.nilcord;
 
+import cc.unilock.nilcord.compat.FactionBridge;
 import cc.unilock.nilcord.compat.ModCompat;
 import cc.unilock.nilcord.compat.MuteBridge;
 import cc.unilock.nilcord.config.NilcordConfig;
@@ -76,8 +77,13 @@ public class NilcordPremain {
         @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
         public void onServerChat(ServerChatEvent event) {
 
+            if (event.isCanceled()) return;
             if (event.player.worldObj.isRemote) return;
             if (event.message == null || event.message.isEmpty()) return;
+
+            if (FactionBridge.isFactionChat(event.player)) {
+                return;
+            }
 
             if (MuteBridge.isPlayerMuted(event.player.getUniqueID())) {
                 return;
