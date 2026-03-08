@@ -18,6 +18,7 @@ public class ModCompat {
         if (Loader.isModLoaded("hfr")) {
             LOGGER.info("XENOFACTIONS detected - loading mute bridge");
             MuteBridge.init();
+            FactionBridge.init();
         }
     }
 }
