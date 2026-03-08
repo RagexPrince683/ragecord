@@ -76,8 +76,7 @@ public class NilcordPremain {
     public static final class MFEvents {
         @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
         public void onServerChat(ServerChatEvent event) {
-
-            if (event.isCanceled()) return;
+            
             if (event.player.worldObj.isRemote) return;
             if (event.message == null || event.message.isEmpty()) return;
 
